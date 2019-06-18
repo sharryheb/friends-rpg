@@ -56,42 +56,11 @@ function setCharacterStats()
     $characterCards = null;
 }
 
-function resetGame()
-{
-    setCharacterStats();
-
-    $characterCards = $(".character");
-    $characterDeck = $("#remainingCharDeck");
-    for(var i=0; i<$characterCards.length; i++)
-    {
-        var $characterName = $characterCards.eq(i).children("div").eq(0).children(".card-title").eq(0).text().toLowerCase();
-        $characterCards.eq(i).children("div").eq(0).children(".card-text").eq(0).text(characters[$characterName].health);
-        $characterCards.eq(i).css("display", "initial");
-        $("#remainingCharDeck").append($characterCards.eq(i));
-    }
-    $("#remainingCharAnchor").append($("#remainingCharDeck"));
-
-    initUI();
-}
-
 function initUI()
 {
-    $("#chooseWhich").css("display", "initial");
-    $("#remainingCharAnchor").css("display", "initial");
-    $("#currentCharacter").css("display", "none");
-    $("#currentOpponent").css("display", "none");
-    $("#remainingOpp").css("display", "none");
-    $("#fightSection").css("display", "none");
-    $("#buttons").css("display", "none");
-
-    $("#messages").text("");
-}
-
-function initGame()
-{
-    setCharacterStats();
-
     $characterCards = $(".character");
+    $characterDeck = $("#remainingCharDeck");
+    
     var i = 0; 
     for(var character in characters)
     {
@@ -101,8 +70,38 @@ function initGame()
         $currentCard.children("img").eq(0).attr("src", iCharacter.image);
         $currentCard.children("div").eq(0).children(".card-title").eq(0).text(iCharacter.name);
         $currentCard.children("div").eq(0).children(".card-text").eq(0).text(iCharacter.health);
+
+        $characterCards.eq(i).css("display", "");
+        $("#remainingCharDeck").append($characterCards.eq(i));
         i++;
     }
+    $("#remainingCharAnchor").append($("#remainingCharDeck"));
+
+    $("#remainingCharAnchor").css("display", "");
+
+    $("#remainingCharDeck").css("display", "");
+    
+    $("#chooseWhich").css("display", "");
+    
+    $("#remainingOpp").children("h3").eq(0).css("display", "");
+    $("#remainingOpp").css("display", "none");
+    $("#remainingOpp").children("img").remove();
+
+    $("#currentCharacter").css("display", "none");
+    
+    $("#currentOpponent").css("display", "none");
+    
+    $("#fightSection").css("display", "none");
+    
+    $("#buttons").css("display", "none");
+
+    $("#messages").text("");
+
+}
+
+function initGame()
+{
+    setCharacterStats();
 
     initUI();
 }
@@ -114,7 +113,7 @@ $(document).ready(function ()
 
 $("#resetBtn").click(function()
 {
-    resetGame();
+    initGame();
 });
 
 $(".character").click(function()
@@ -126,14 +125,15 @@ $(".character").click(function()
     if (!isCharacterChosen)
     {
         $("#currentCharacter").append($actualTarget);
-        $("#currentCharacter").css("display", "initial");
+        $("#currentCharacter").css("display", "");
 
         isCharacterChosen = true;
         currentCharacter = characterObj;
 
         $("#chooseWhich").css("display", "none");
+        $("#currentOpponent").css("display", "");
         $("#remainingOpp").append($("#remainingCharDeck"));
-        $("#remainingOpp").css("display", "initial");
+        $("#remainingOpp").css("display", "");
         $("#remainingOpp").children("h3").eq(0).text("Remaining Opponents:");
     }
     else if (!isOpponentChosen)
@@ -142,19 +142,19 @@ $(".character").click(function()
         {
             $("#messages").text("");
             $("#currentOpponent").append($actualTarget);
-            $("#currentOpponent").css("display", "initial");
+            $("#currentOpponent").css("display", "");
 
             isOpponentChosen = true;
             currentOpponent = characterObj;
 
-            $("#fightSection").css("display", "initial");
-            $("#buttons").css("display", "initial");
+            $("#fightSection").css("display", "");
+            $("#buttons").css("display", "");
             $("#attackBtn").attr("disabled", false);
             $("#resetBtn").attr("disabled", false);
         }
         else
         {
-            $("#fightSection").css("display", "initial");
+            $("#fightSection").css("display", "");
             $("#messages").text("You cannot choose your own player as an opponent.");
         }
     }
@@ -177,6 +177,11 @@ $("#attackBtn").click(function()
 
     if (currentCharacter.health <= 0)
     {
+        $("#remainingOpp").append($("<img>").attr("src", "assets/images/loser.gif"));
+        $("#remainingOpp").css("display", "");
+        $("#remainingOpp").children("h3").eq(0).css("display", "none");
+        $("#remainingCharDeck").css("display", "none");
+        $("#currentOpponent").css("display", "none");
         $("#messages").text("You got your ass kicked by " + currentOpponent.name + "! Game over!");
         $("#attackBtn").attr("disabled", true);
     }
@@ -189,6 +194,11 @@ $("#attackBtn").click(function()
         {
             currentOpponent = null;
             isOpponentChosen = false;
+            $("#remainingOpp").append($("<img>").attr("src", "assets/images/TurkeyDance.gif"));
+            $("#remainingOpp").css("display", "");
+            $("#remainingOpp").children("h3").eq(0).css("display", "none");
+            $("#remainingCharDeck").css("display", "none");
+            $("#currentOpponent").css("display", "none");
             $("#messages").text("You kicked everyone's ass! Game over!");
             $("#attackBtn").attr("disabled", true);
         }
