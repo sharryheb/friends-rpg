@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F.R.I.E.N.D.S RPG</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+
+<body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="headerDiv text-center">
+                        <img src="assets/images/logo.png" class="img-fluid" alt="Friends Logo">&nbsp;<div id="rpgText" class="pl-5">RPG</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="remainingCharAnchor">
+                    <h3 id="chooseWhich">Choose a character to play as:</h3>
+                    <div class="card-deck border border-dark p-2 w-75" id="remainingCharDeck">
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                        <div class="card character text-center mx-1">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body p-1">
+                                <h6 class="card-title mb-1"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-3" id="currentCharacter">
+                    <h3>Your Character:</h3>
+                </div>
+                <div class="col-md-3" id="currentOpponent">
+                    <h3>Your Opponent:</h3>
+                </div>
+                <div class="col-md-6" id="remainingOpp">
+                    <h3>Choose your opponent:</h3>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3" id="buttons">
+                    <button type="button" class="btn btn-primary inline" id="attackBtn">Attack!</button>
+                    <button type="button" class="btn btn-primary inline" id="resetBtn">Reset Game</button>
+                </div>
+                <div class="col-md-9" id="fightSection">
+                    <h6>Results: </h6>
+                    <div id="messages"></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+<script src="assets/javascript/game.js"></script>
+
+</html>

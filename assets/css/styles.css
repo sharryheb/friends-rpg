@@ -1,0 +1,21 @@
+body {
+    background: url("../images/opening.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#headerDiv {
+    position: relative;
+}
+
+#rpgText {
+    display: inline-flex;
+    position: absolute;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: 60pt;
+}
+
+.card {
+    max-width: 200px;
+}
